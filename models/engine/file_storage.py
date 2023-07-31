@@ -4,6 +4,8 @@ Contains the FileStorage class
 """
 
 import json
+import models
+from models import base_model, amenity, city, place, review, state, user
 from models.amenity import Amenity
 from models.base_model import BaseModel
 from models.city import City
@@ -18,6 +20,15 @@ classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
 
 class FileStorage:
     """serializes instances to a JSON file & deserializes back to instances"""
+
+    CNC = {
+        'Amenity': amenity.Amenity,
+        'City': city.City,
+        'Place': place.Place,
+        'Review': review.Review,
+        'State': state.State,
+        'User': user.User
+    }
 
     # string - path to the JSON file
     __file_path = "file.json"

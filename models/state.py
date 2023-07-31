@@ -3,6 +3,7 @@
 import models
 from models.base_model import BaseModel, Base
 from models.city import City
+import os
 from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey
@@ -11,7 +12,7 @@ from sqlalchemy.orm import relationship
 
 class State(BaseModel, Base):
     """Representation of state """
-    if models.storage_t == "db":
+    if os.environ.get('HBNB_TYPE_STORAGE') == "db":
         __tablename__ = 'states'
         name = Column(String(128), nullable=False)
         cities = relationship("City", backref="state")
@@ -22,7 +23,7 @@ class State(BaseModel, Base):
         """initializes state"""
         super().__init__(*args, **kwargs)
 
-    if models.storage_t != "db":
+    if os.environ.get('HBNB_TYPE_STORAGE') != "db":
         @property
         def cities(self):
             """getter for list of city instances related to the state"""

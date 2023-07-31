@@ -4,6 +4,7 @@ Contains the class DBStorage
 """
 
 import models
+from models import base_model, amenity, city, place, review, state, user
 from models.amenity import Amenity
 from models.base_model import BaseModel, Base
 from models.city import City
@@ -22,6 +23,14 @@ classes = {"Amenity": Amenity, "City": City,
 
 class DBStorage:
     """interaacts with the MySQL database"""
+    CNC = {
+        'Amenity': amenity.Amenity,
+        'City': city.City,
+        'Place': place.Place,
+        'Review': review.Review,
+        'State': state.State,
+        'User': user.User
+    }
     __engine = None
     __session = None
 
